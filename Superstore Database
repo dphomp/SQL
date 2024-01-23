@@ -45,4 +45,4 @@ WHERE category="Kitchen Supplies";
 #Show a statistic about the stock_quantity for items in the category of "Electronics".
 SELECT sum(stock_quantity)
 FROM superstore
-WHERE category='Electronics';
+WHERE category="Electronics";
