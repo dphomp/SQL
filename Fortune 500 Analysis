@@ -55,3 +55,36 @@ VALUES
     ('Company II', 'Telecommunications', 110.5, 2000, 1, 21, 12, 4.9),
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
+
+# Analysis:
+
+# Assign companies that have healthcare benefits as 'yes' or 'no'.
+SELECT company_name, 
+CASE 
+WHEN healthcare_benefits = 1 THEN 'yes'
+ELSE 'no'
+END AS healthcare_benefits
+FROM fortune_companies;
+
+# Which companies have an average revenue of 150 or higher?
+SELECT company_name, avg(revenue) AS avg_revenue
+FROM fortune_companies
+GROUP BY revenue
+HAVING avg_revenue >=150;
+
+# Which companies offer at least 20 days of pto and at least 10 weeks of maternity leave?
+SELECT company_name, paid_time_off_days, maternity_leave_weeks
+FROM fortune_companies
+WHERE paid_time_off_days >= 20
+AND maternity_leave_weeks >= 10;
+
+# How many companies are in each industry?
+SELECT industry, COUNT(company_name) AS total_companies
+FROM fortune_companies
+GROUP BY industry;
+
+# Which companies offer at least 14 pto days?
+SELECT company_name, paid_time_off_days
+FROM fortune_companies
+WHERE paid_time_off_days >= 14
+ORDER BY paid_time_off_days;
